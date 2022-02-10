@@ -2,7 +2,6 @@ export const GAME_TITLE = 'Wordle (Сахалыы)'
 
 export const WIN_MESSAGES = ['Бэккэ таайдын!', 'Yчyгэй', 'Серу сеп!']
 export const GAME_COPIED_MESSAGE = 'Game copied to clipboard'
-export const ABOUT_GAME_MESSAGE = 'Бу оонньуу туhунан'
 export const NOT_ENOUGH_LETTERS_MESSAGE = 'А5ыйах буукуба'
 export const WORD_NOT_FOUND_MESSAGE = 'Маннык тыл суох'
 export const CORRECT_WORD_MESSAGE = (solution: string) =>
