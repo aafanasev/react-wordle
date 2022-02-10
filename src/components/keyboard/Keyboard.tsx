@@ -52,7 +52,7 @@ export const Keyboard = ({
   return (
     <div>
       <div className="flex justify-center mb-1">
-        {['Й', 'Ц', 'У', 'К', 'Е', 'Н', 'Г', 'Ш', 'Щ', 'З', 'Һ', 'Ө', 'Ҕ'].map((key) => (
+        {['Й', 'Ц', 'У', 'К', 'Е', 'Н', 'Г', 'Ш', 'Щ', 'З', 'Х', 'Һ', 'Ө'].map((key) => (
           <Key
             value={key}
             key={key}
@@ -63,7 +63,7 @@ export const Keyboard = ({
         ))}
       </div>
       <div className="flex justify-center mb-1">
-        {['Ф', 'Ы', 'В', 'А', 'П', 'Р', 'О', 'Л', 'Д', 'Ж', 'Ү', 'Ҥ'].map((key) => (
+        {['Ф', 'Ы', 'В', 'А', 'П', 'Р', 'О', 'Л', 'Д', 'Ж', 'Ҕ', 'Ү', 'Ҥ'].map((key) => (
           <Key
             value={key}
             key={key}
