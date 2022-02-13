@@ -13,24 +13,23 @@
   <body>
     <noscript>Необходимо включить JavaScript для работы сайта.</noscript>
     <div id="root"></div>
-    
-    <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.6/firebase-app.js";
-      import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.6/firebase-analytics.js";
-      
-      const firebaseConfig = {
-        apiKey: "AIzaSyD1w0ATPH0CgN_PfNsrGC0xJozjByIFmYs",
-        authDomain: "wordle-9c4d8.firebaseapp.com",
-        projectId: "wordle-9c4d8",
-        storageBucket: "wordle-9c4d8.appspot.com",
-        messagingSenderId: "285159166515",
-        appId: "1:285159166515:web:aeb87fea02f2ca23bb0946",
-        measurementId: "G-M4KZDXWP95"
-      };
-    
-      const app = initializeApp(firebaseConfig);
-      const analytics = getAnalytics(app);
-    </script>
 
+    <script type="module">
+      import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-app.js'
+      import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-analytics.js'
+
+      const firebaseConfig = {
+        apiKey: 'AIzaSyD1w0ATPH0CgN_PfNsrGC0xJozjByIFmYs',
+        authDomain: 'wordle-9c4d8.firebaseapp.com',
+        projectId: 'wordle-9c4d8',
+        storageBucket: 'wordle-9c4d8.appspot.com',
+        messagingSenderId: '285159166515',
+        appId: '1:285159166515:web:aeb87fea02f2ca23bb0946',
+        measurementId: 'G-M4KZDXWP95',
+      }
+
+      const app = initializeApp(firebaseConfig)
+      const analytics = getAnalytics(app)
+    </script>
   </body>
 </html>
