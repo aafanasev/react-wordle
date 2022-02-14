@@ -1,7 +1,8 @@
 import { getStatuses } from '../../lib/statuses'
 import { Key } from './Key'
 import { useEffect } from 'react'
-import { ENTER_TEXT, DELETE_TEXT } from '../../constants/strings'
+import { ENTER_TEXT } from '../../constants/strings'
+import { BackspaceIcon } from '@heroicons/react/outline'
 
 type Props = {
   onChar: (value: string) => void
@@ -78,8 +79,8 @@ export const Keyboard = ({
         )}
       </div>
       <div className="flex justify-center">
-        <Key width={65.4} value="ENTER" onClick={onClick}>
-          {ENTER_TEXT}
+        <Key width={54} value="DELETE" onClick={onClick}>
+          <BackspaceIcon className="h-6 w-6" />
         </Key>
         {['Я', 'Ч', 'С', 'М', 'И', 'Т', 'Ь', 'Б', 'Ю', 'Э'].map((key) => (
           <Key
@@ -90,8 +91,8 @@ export const Keyboard = ({
             isRevealing={isRevealing}
           />
         ))}
-        <Key width={65.4} value="DELETE" onClick={onClick}>
-          {DELETE_TEXT}
+        <Key width={70} value="ENTER" onClick={onClick}>
+          {ENTER_TEXT}
         </Key>
       </div>
     </div>
