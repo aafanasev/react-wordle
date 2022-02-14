@@ -8,9 +8,14 @@ type Props = {
 
 export const InfoModal = ({ isOpen, handleClose }: Props) => {
   return (
-    <BaseModal title="Хайдах оонньоонор" isOpen={isOpen} handleClose={handleClose}>
+    <BaseModal
+      title="Хайдах оонньоонор"
+      isOpen={isOpen}
+      handleClose={handleClose}
+    >
       <p className="text-sm text-gray-500 dark:text-gray-300">
-        Таайыллыбыт тылы 6-та холонон көрөн таайын. Хас холонон көрүү кэннэ, буукуба өҥө уларыйыа төһө чугаскытын көрдөрөөрү.
+        Таайыллыбыт тылы 6-та холонон көрөн таайын. Хас холонон көрүү кэннэ,
+        буукуба өҥө уларыйыа төһө чугаскытын көрдөрөөрү.
       </p>
 
       <div className="flex justify-center mb-1 mt-4">
