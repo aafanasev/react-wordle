@@ -8,43 +8,42 @@ type Props = {
 
 export const InfoModal = ({ isOpen, handleClose }: Props) => {
   return (
-    <BaseModal title="How to play" isOpen={isOpen} handleClose={handleClose}>
+    <BaseModal title="Хайдах оонньоонор" isOpen={isOpen} handleClose={handleClose}>
       <p className="text-sm text-gray-500 dark:text-gray-300">
-        Guess the word in 6 tries. After each guess, the color of the tiles will
-        change to show how close your guess was to the word.
+        Таайыллыбыт тылы 6-та холонон көрөн таайын. Хас холонон көрүү кэннэ, буукуба өҥө уларыйыа төһө чугаскытын көрдөрөөрү.
       </p>
 
       <div className="flex justify-center mb-1 mt-4">
-        <Cell value="W" status="correct" />
-        <Cell value="E" />
-        <Cell value="A" />
-        <Cell value="R" />
-        <Cell value="Y" />
+        <Cell value="К" status="correct" />
+        <Cell value="Ө" />
+        <Cell value="М" />
+        <Cell value="Ү" />
+        <Cell value="С" />
       </div>
       <p className="text-sm text-gray-500 dark:text-gray-300">
-        The letter W is in the word and in the correct spot.
+        "К" буукуба тылга баар уонна сөп миэстэҕэ турар.
       </p>
 
       <div className="flex justify-center mb-1 mt-4">
-        <Cell value="P" />
-        <Cell value="I" />
-        <Cell value="L" status="present" />
-        <Cell value="O" />
-        <Cell value="T" />
+        <Cell value="Б" />
+        <Cell value="Ы" />
+        <Cell value="Л" status="present" />
+        <Cell value="Ы" />
+        <Cell value="Т" />
       </div>
       <p className="text-sm text-gray-500 dark:text-gray-300">
-        The letter L is in the word but in the wrong spot.
+        "Л" буукуба тылга баар ол эрэн атын миэстэҕэ туруохтаах.
       </p>
 
       <div className="flex justify-center mb-1 mt-4">
-        <Cell value="V" />
-        <Cell value="A" />
-        <Cell value="G" />
-        <Cell value="U" status="absent" />
-        <Cell value="E" />
+        <Cell value="Х" />
+        <Cell value="А" />
+        <Cell value="Р" />
+        <Cell value="Ч" status="absent" />
+        <Cell value="Ы" />
       </div>
       <p className="text-sm text-gray-500 dark:text-gray-300">
-        The letter U is not in the word in any spot.
+        "Ч" буукуба тылга ханна да суох.
       </p>
     </BaseModal>
   )
