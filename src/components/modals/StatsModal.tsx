@@ -2,14 +2,17 @@ import Countdown from 'react-countdown'
 import { StatBar } from '../stats/StatBar'
 import { Histogram } from '../stats/Histogram'
 import { GameStats } from '../../lib/localStorage'
-import { shareStatus } from '../../lib/share'
+import { tweetStatus, shareStatus, copyStatus } from '../../lib/share'
 import { tomorrow } from '../../lib/words'
 import { BaseModal } from './BaseModal'
+import { GlobeIcon, ShareIcon, DuplicateIcon } from '@heroicons/react/outline'
 import {
   STATISTICS_TITLE,
   GUESS_DISTRIBUTION_TEXT,
   NEW_WORD_TEXT,
+  TWITTER_TEXT,
   SHARE_TEXT,
+  COPY_TEXT,
 } from '../../constants/strings'
 
 type Props = {
@@ -19,7 +22,7 @@ type Props = {
   gameStats: GameStats
   isGameLost: boolean
   isGameWon: boolean
-  handleShare: () => void
+  handleCopy: () => void
 }
 
 export const StatsModal = ({
@@ -29,7 +32,7 @@ export const StatsModal = ({
   gameStats,
   isGameLost,
   isGameWon,
-  handleShare,
+  handleCopy,
 }: Props) => {
   if (gameStats.totalGames <= 0) {
     return (
@@ -54,8 +57,8 @@ export const StatsModal = ({
       </h4>
       <Histogram gameStats={gameStats} />
       {(isGameLost || isGameWon) && (
-        <div className="mt-5 sm:mt-6 columns-2 dark:text-white">
-          <div>
+        <div className="mt-5 sm:mt-6 dark:text-white flex flex-col sm:flex-row">
+          <div className="flex flex-col sm:pr-7 self-center">
             <h5>{NEW_WORD_TEXT}</h5>
             <Countdown
               className="text-lg font-medium text-gray-900 dark:text-gray-100"
@@ -63,16 +66,39 @@ export const StatsModal = ({
               daysInHours={true}
             />
           </div>
-          <button
-            type="button"
-            className="mt-2 w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm"
-            onClick={() => {
-              shareStatus(guesses, isGameLost)
-              handleShare()
-            }}
-          >
-            {SHARE_TEXT}
-          </button>
+          <div className="flex flex-col sm:w-1/2">
+            <button
+              type="button"
+              className="mt-2 w-full rounded-md border border-transparent shadow-sm px-4 py-2 inline-flex items-center text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 sm:text-sm bg-sky-600 hover:bg-sky-700 focus:ring-sky-500"
+              onClick={() => {
+                tweetStatus(guesses, isGameLost)
+              }}
+            >
+              <GlobeIcon className="h-5 w-5 mr-2" />
+              {TWITTER_TEXT}
+            </button>
+            <button
+              type="button"
+              className="mt-2 w-full rounded-md border border-transparent shadow-sm px-4 py-2 inline-flex items-center text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 sm:text-sm bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500"
+              onClick={() => {
+                shareStatus(guesses, isGameLost)
+              }}
+            >
+              <ShareIcon className="h-5 w-5 mr-2" />
+              {SHARE_TEXT}
+            </button>
+            <button
+              type="button"
+              className="mt-2 w-full rounded-md border border-transparent shadow-sm px-4 py-2 inline-flex items-center text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 sm:text-sm bg-green-600 hover:bg-green-700 focus:ring-green-500"
+              onClick={() => {
+                copyStatus(guesses, isGameLost)
+                handleCopy()
+              }}
+            >
+              <DuplicateIcon className="h-5 w-5 mr-2" />
+              {COPY_TEXT}
+            </button>
+          </div>
         </div>
       )}
     </BaseModal>
