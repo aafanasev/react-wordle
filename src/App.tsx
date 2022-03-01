@@ -24,6 +24,7 @@ import {
   ALERT_TIME_MS,
   REVEAL_TIME_MS,
 } from './constants/settings'
+import { log } from './lib/analytics'
 import { isWordInWordList, isWinningWord, solution } from './lib/words'
 import { addStatsForCompletedGame, loadStats } from './lib/stats'
 import {
@@ -90,6 +91,7 @@ function App() {
 
   useEffect(() => {
     if (isGameWon) {
+      log('game_won')
       setTimeout(() => {
         setSuccessAlert(
           WIN_MESSAGES[Math.floor(Math.random() * WIN_MESSAGES.length)]
@@ -102,6 +104,7 @@ function App() {
       }, REVEAL_TIME_MS * MAX_WORD_LENGTH)
     }
     if (isGameLost) {
+      log('game_lost')
       setTimeout(() => {
         setIsStatsModalOpen(true)
       }, ALERT_TIME_MS)

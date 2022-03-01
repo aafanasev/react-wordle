@@ -1,8 +1,10 @@
+import { log } from './analytics'
 import { getGuessStatuses } from './statuses'
 import { solutionIndex } from './words'
 import { GAME_TITLE } from '../constants/strings'
 
 export const tweetStatus = (guesses: string[], lost: boolean) => {
+  log('tweet')
   window.open(
     'https://twitter.com/intent/tweet?text=' +
       encodeURIComponent(getText(guesses, lost)),
@@ -11,12 +13,14 @@ export const tweetStatus = (guesses: string[], lost: boolean) => {
 }
 
 export const shareStatus = (guesses: string[], lost: boolean) => {
+  log('share')
   navigator.share({
     text: getText(guesses, lost),
   })
 }
 
 export const copyStatus = (guesses: string[], lost: boolean) => {
+  log('copy')
   navigator.clipboard.writeText(getText(guesses, lost))
 }
 
