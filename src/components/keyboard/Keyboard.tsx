@@ -3,6 +3,7 @@ import { Key } from './Key'
 import { useEffect } from 'react'
 import { ENTER_TEXT } from '../../constants/strings'
 import { BackspaceIcon } from '@heroicons/react/outline'
+import { isMetaProperty } from 'typescript'
 
 type Props = {
   onChar: (value: string) => void
@@ -31,6 +32,19 @@ export const Keyboard = ({
     }
   }
 
+  const isMobile = window.innerWidth < 440
+  const keyHeight = isMobile ? 44 : 58
+  const createKey = (key: string) => (
+    <Key
+      value={key}
+      key={key}
+      onClick={onClick}
+      status={charStatuses[key]}
+      isRevealing={isRevealing}
+      height={keyHeight}
+    />
+  )
+
   useEffect(() => {
     const listener = (e: KeyboardEvent) => {
       if (e.code === 'Enter') {
@@ -50,48 +64,53 @@ export const Keyboard = ({
     }
   }, [onEnter, onDelete, onChar])
 
+  if (isMobile) {
+    return (
+      <div>
+        <div className="flex justify-center mb-1">
+          {['Й', 'Ц', 'У', 'К', 'Е', 'Н', 'Г', 'Ш', 'Щ', 'З', 'Х'].map(
+            createKey
+          )}
+        </div>
+        <div className="flex justify-center mb-1">
+          {['Ф', 'Ы', 'В', 'А', 'П', 'Р', 'О', 'Л', 'Д', 'Ж', 'Э'].map(
+            createKey
+          )}
+        </div>
+        <div className="flex justify-center mb-1">
+          {['Я', 'Ч', 'С', 'М', 'И', 'Т', 'Ь', 'Б', 'Ю'].map(createKey)}
+        </div>
+        <div className="flex justify-center">
+          <Key width={84} height={keyHeight} value="DELETE" onClick={onClick}>
+            <BackspaceIcon className="h-6 w-6" />
+          </Key>
+          {['Һ', 'Ө', 'Ҕ', 'Ү', 'Ҥ'].map(createKey)}
+          <Key width={84} height={keyHeight} value="ENTER" onClick={onClick}>
+            {ENTER_TEXT}
+          </Key>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div>
       <div className="flex justify-center mb-1">
         {['Й', 'Ц', 'У', 'К', 'Е', 'Н', 'Г', 'Ш', 'Щ', 'З', 'Х', 'Һ', 'Ө'].map(
-          (key) => (
-            <Key
-              value={key}
-              key={key}
-              onClick={onClick}
-              status={charStatuses[key]}
-              isRevealing={isRevealing}
-            />
-          )
+          createKey
         )}
       </div>
       <div className="flex justify-center mb-1">
-        {['Ф', 'Ы', 'В', 'А', 'П', 'Р', 'О', 'Л', 'Д', 'Ж', 'Ҕ', 'Ү', 'Ҥ'].map(
-          (key) => (
-            <Key
-              value={key}
-              key={key}
-              onClick={onClick}
-              status={charStatuses[key]}
-              isRevealing={isRevealing}
-            />
-          )
+        {['Ф', 'Ы', 'В', 'А', 'П', 'Р', 'О', 'Л', 'Д', 'Ж', 'Э', 'Ҕ', 'Ү'].map(
+          createKey
         )}
       </div>
       <div className="flex justify-center">
-        <Key width={54} value="DELETE" onClick={onClick}>
+        <Key width={54} height={keyHeight} value="DELETE" onClick={onClick}>
           <BackspaceIcon className="h-6 w-6" />
         </Key>
-        {['Я', 'Ч', 'С', 'М', 'И', 'Т', 'Ь', 'Б', 'Ю', 'Э'].map((key) => (
-          <Key
-            value={key}
-            key={key}
-            onClick={onClick}
-            status={charStatuses[key]}
-            isRevealing={isRevealing}
-          />
-        ))}
-        <Key width={70} value="ENTER" onClick={onClick}>
+        {['Я', 'Ч', 'С', 'М', 'И', 'Т', 'Ь', 'Б', 'Ю', 'Ҥ'].map(createKey)}
+        <Key width={70} height={keyHeight} value="ENTER" onClick={onClick}>
           {ENTER_TEXT}
         </Key>
       </div>
