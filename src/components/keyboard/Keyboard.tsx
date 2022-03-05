@@ -77,13 +77,15 @@ export const Keyboard = ({
           )}
         </div>
         <div className="flex justify-center mb-1">
-          {['Я', 'Ч', 'С', 'М', 'И', 'Т', 'Ь', 'Б', 'Ю'].map(createKey)}
+          {['Я', 'Ч', 'С', 'М', 'И', 'Т', 'Ь', 'Б', 'Ю', 'Һ', 'Ө'].map(
+            createKey
+          )}
         </div>
         <div className="flex justify-center">
           <Key width={84} height={keyHeight} value="DELETE" onClick={onClick}>
             <BackspaceIcon className="h-6 w-6" />
           </Key>
-          {['Һ', 'Ө', 'Ҕ', 'Ү', 'Ҥ'].map(createKey)}
+          {['Ҕ', 'Ү', 'Ҥ'].map(createKey)}
           <Key width={84} height={keyHeight} value="ENTER" onClick={onClick}>
             {ENTER_TEXT}
           </Key>
