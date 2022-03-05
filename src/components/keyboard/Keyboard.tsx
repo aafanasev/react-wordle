@@ -3,7 +3,6 @@ import { Key } from './Key'
 import { useEffect } from 'react'
 import { ENTER_TEXT } from '../../constants/strings'
 import { BackspaceIcon } from '@heroicons/react/outline'
-import { isMetaProperty } from 'typescript'
 
 type Props = {
   onChar: (value: string) => void
