@@ -32,7 +32,7 @@ export const Keyboard = ({
   }
 
   const isMobile = window.innerWidth < 440
-  const keyHeight = isMobile ? 44 : 58
+  const keyHeight = isMobile ? 45 : 58
   const createKey = (key: string) => (
     <Key
       value={key}
