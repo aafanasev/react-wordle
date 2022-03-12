@@ -13,6 +13,11 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig)
 const firebaseAnalytics = getAnalytics(firebaseApp)
 
-export const log = (eventName: string) => {
-  logEvent(firebaseAnalytics, eventName)
+export const log = (
+  eventName: string,
+  eventParams?: {
+    [key: string]: any
+  }
+) => {
+  logEvent(firebaseAnalytics, eventName, eventParams)
 }

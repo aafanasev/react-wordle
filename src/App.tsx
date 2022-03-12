@@ -91,7 +91,6 @@ function App() {
 
   useEffect(() => {
     if (isGameWon) {
-      log('game_won')
       setTimeout(() => {
         setSuccessAlert(
           WIN_MESSAGES[Math.floor(Math.random() * WIN_MESSAGES.length)]
@@ -104,7 +103,6 @@ function App() {
       }, REVEAL_TIME_MS * MAX_WORD_LENGTH)
     }
     if (isGameLost) {
-      log('game_lost')
       setTimeout(() => {
         setIsStatsModalOpen(true)
       }, ALERT_TIME_MS)
@@ -161,11 +159,13 @@ function App() {
       setCurrentGuess('')
 
       if (winningWord) {
+        log('game_won', { guesses: guesses.length + 1 })
         setStats(addStatsForCompletedGame(stats, guesses.length))
         return setIsGameWon(true)
       }
 
       if (guesses.length === MAX_CHALLENGES - 1) {
+        log('game_lost')
         setStats(addStatsForCompletedGame(stats, guesses.length + 1))
         setIsGameLost(true)
       }
