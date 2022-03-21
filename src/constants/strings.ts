@@ -1,4 +1,5 @@
 export const GAME_TITLE = 'Wordle (Сахалыы)'
+export const GAME_DESC = 'Игра Wordle на якутском языке'
 
 export const WIN_MESSAGES = ['Эҕэрдэ!', 'Сөп эппиэт', 'Сөрү сөп!']
 export const GAME_COPIED_MESSAGE = 'Оонньуу копияланна'
