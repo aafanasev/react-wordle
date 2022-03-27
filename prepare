@@ -1,0 +1,6 @@
+#!/bin/sh
+
+mv docs/CNAME ./
+rm -rf docs
+mv build docs
+mv CNAME docs/
