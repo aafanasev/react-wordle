@@ -73,6 +73,7 @@ export const StatsModal = ({
             />
           </div>
           <div className="flex flex-col sm:w-1/2">
+            <h5>Дьоҥҥо кэпсээ #буордулу</h5>
             <button
               type="button"
               className="mt-2 w-full rounded-md border border-transparent shadow-sm px-4 py-2 inline-flex items-center text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 sm:text-sm bg-sky-600 hover:bg-sky-700 focus:ring-sky-500"
