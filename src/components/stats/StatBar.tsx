@@ -1,3 +1,4 @@
+import { solutionIndex } from '../../lib/words'
 import { GameStats } from '../../lib/localStorage'
 import {
   TOTAL_TRIES_TEXT,
@@ -28,6 +29,7 @@ const StatItem = ({
 export const StatBar = ({ gameStats }: Props) => {
   return (
     <div className="flex justify-center my-2">
+      <StatItem label="№ күн" value={solutionIndex} />
       <StatItem label={TOTAL_TRIES_TEXT} value={gameStats.totalGames} />
       <StatItem label={SUCCESS_RATE_TEXT} value={`${gameStats.successRate}%`} />
       <StatItem label={CURRENT_STREAK_TEXT} value={gameStats.currentStreak} />
