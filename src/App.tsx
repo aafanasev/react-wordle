@@ -185,21 +185,33 @@ function App() {
         {isDarkMode ? (
           <SunIcon
             className="h-6 w-6 mr-2 cursor-pointer dark:stroke-white"
-            onClick={() => handleDarkMode(!isDarkMode)}
+            onClick={() => {
+              log('turn_light_mode_on')
+              handleDarkMode(!isDarkMode)
+            }}
           />
         ) : (
           <MoonIcon
             className="h-6 w-6 mr-2 cursor-pointer"
-            onClick={() => handleDarkMode(!isDarkMode)}
+            onClick={() => {
+              log('turn_dark_mode_on')
+              handleDarkMode(!isDarkMode)
+            }}
           />
         )}
         <InformationCircleIcon
           className="h-6 w-6 mr-2 cursor-pointer dark:stroke-white"
-          onClick={() => setIsInfoModalOpen(true)}
+          onClick={() => {
+            log('open_info_modal')
+            setIsInfoModalOpen(true)
+          }}
         />
         <ChartBarIcon
           className="h-6 w-6 mr-3 cursor-pointer dark:stroke-white"
-          onClick={() => setIsStatsModalOpen(true)}
+          onClick={() => {
+            log('open_stats_modal')
+            setIsStatsModalOpen(true)
+          }}
         />
       </div>
       <Grid

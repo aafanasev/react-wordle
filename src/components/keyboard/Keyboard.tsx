@@ -1,3 +1,4 @@
+import { log } from '../../lib/analytics'
 import { getStatuses } from '../../lib/statuses'
 import { Key } from './Key'
 import { useEffect } from 'react'
@@ -22,8 +23,10 @@ export const Keyboard = ({
 
   const onClick = (value: string) => {
     if (value === 'ENTER') {
+      log('tap_enter')
       onEnter()
     } else if (value === 'DELETE') {
+      log('tap_delete')
       onDelete()
     } else {
       onChar(value)
@@ -43,8 +46,10 @@ export const Keyboard = ({
   useEffect(() => {
     const listener = (e: KeyboardEvent) => {
       if (e.code === 'Enter') {
+        log('tap_enter_physical')
         onEnter()
       } else if (e.code === 'Backspace') {
+        log('tap_delete_physical')
         onDelete()
       } else {
         const key = e.key.toUpperCase()
@@ -58,6 +63,7 @@ export const Keyboard = ({
             key === 'Ү' ||
             key === 'Ҥ')
         ) {
+          log('tap_char_physical')
           onChar(key === '5' ? 'Ҕ' : key)
         }
       }
