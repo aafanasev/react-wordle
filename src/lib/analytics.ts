@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app'
-import { getAnalytics, logEvent } from 'firebase/analytics'
+import { getAnalytics, isSupported, logEvent } from 'firebase/analytics'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyD1w0ATPH0CgN_PfNsrGC0xJozjByIFmYs',
@@ -11,7 +11,9 @@ const firebaseConfig = {
   measurementId: 'G-M4KZDXWP95',
 }
 const firebaseApp = initializeApp(firebaseConfig)
-const firebaseAnalytics = getAnalytics(firebaseApp)
+const firebaseAnalytics = isSupported().then((yes) =>
+  yes ? getAnalytics(firebaseApp) : null
+)
 
 export const log = (
   eventName: string,
@@ -19,5 +21,9 @@ export const log = (
     [key: string]: any
   }
 ) => {
-  logEvent(firebaseAnalytics, eventName, eventParams)
+  firebaseAnalytics.then((analytics) => {
+    if (analytics != null) {
+      logEvent(analytics, eventName, eventParams)
+    }
+  })
 }
