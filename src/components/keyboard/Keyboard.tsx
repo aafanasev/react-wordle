@@ -1,8 +1,7 @@
 import { getStatuses } from '../../lib/statuses'
 import { Key } from './Key'
 import { useEffect } from 'react'
-import { ENTER_TEXT } from '../../constants/strings'
-import { BackspaceIcon } from '@heroicons/react/outline'
+import { BackspaceIcon, SearchIcon } from '@heroicons/react/outline'
 
 type Props = {
   onChar: (value: string) => void
@@ -31,8 +30,6 @@ export const Keyboard = ({
     }
   }
 
-  const isMobile = window.innerWidth < 440
-  const keyHeight = isMobile ? 45 : 58
   const createKey = (key: string) => (
     <Key
       value={key}
@@ -40,7 +37,6 @@ export const Keyboard = ({
       onClick={onClick}
       status={charStatuses[key]}
       isRevealing={isRevealing}
-      height={keyHeight}
     />
   )
 
@@ -52,8 +48,17 @@ export const Keyboard = ({
         onDelete()
       } else {
         const key = e.key.toUpperCase()
-        if (key.length === 1 && key >= 'A' && key <= 'Z') {
-          onChar(key)
+        if (
+          key.length === 1 &&
+          ((key >= 'А' && key <= 'Я') ||
+            key === 'Һ' ||
+            key === 'Ө' ||
+            key === 'Ҕ' ||
+            key === '5' ||
+            key === 'Ү' ||
+            key === 'Ҥ')
+        ) {
+          onChar(key === '5' ? 'Ҕ' : key)
         }
       }
     }
@@ -63,56 +68,21 @@ export const Keyboard = ({
     }
   }, [onEnter, onDelete, onChar])
 
-  if (isMobile) {
-    return (
-      <div>
-        <div className="flex justify-center mb-1">
-          {['Й', 'Ц', 'У', 'К', 'Е', 'Н', 'Г', 'Ш', 'Щ', 'З', 'Х'].map(
-            createKey
-          )}
-        </div>
-        <div className="flex justify-center mb-1">
-          {['Ф', 'Ы', 'В', 'А', 'П', 'Р', 'О', 'Л', 'Д', 'Ж', 'Э'].map(
-            createKey
-          )}
-        </div>
-        <div className="flex justify-center mb-1">
-          {['Я', 'Ч', 'С', 'М', 'И', 'Т', 'Ь', 'Б', 'Ю', 'Һ', 'Ө'].map(
-            createKey
-          )}
-        </div>
-        <div className="flex justify-center">
-          <Key width={84} height={keyHeight} value="DELETE" onClick={onClick}>
-            <BackspaceIcon className="h-6 w-6" />
-          </Key>
-          {['Ҕ', 'Ү', 'Ҥ'].map(createKey)}
-          <Key width={84} height={keyHeight} value="ENTER" onClick={onClick}>
-            {ENTER_TEXT}
-          </Key>
-        </div>
-      </div>
-    )
-  }
-
   return (
-    <div>
+    <div data-testid="keyboard">
       <div className="flex justify-center mb-1">
-        {['Й', 'Ц', 'У', 'К', 'Е', 'Н', 'Г', 'Ш', 'Щ', 'З', 'Х', 'Һ', 'Ө'].map(
-          createKey
-        )}
+        {['Й', 'У', 'К', 'Н', 'Г', 'Х', 'Һ', 'Ө', 'Ҕ', 'Ү'].map(createKey)}
       </div>
       <div className="flex justify-center mb-1">
-        {['Ф', 'Ы', 'В', 'А', 'П', 'Р', 'О', 'Л', 'Д', 'Ж', 'Э', 'Ҕ', 'Ү'].map(
-          createKey
-        )}
-      </div>
-      <div className="flex justify-center">
-        <Key width={54} height={keyHeight} value="DELETE" onClick={onClick}>
+        {['Ы', 'А', 'П', 'Р', 'О', 'Л', 'Д', 'Э'].map(createKey)}
+        <Key width={84} value="DELETE" onClick={onClick}>
           <BackspaceIcon className="h-6 w-6" />
         </Key>
-        {['Я', 'Ч', 'С', 'М', 'И', 'Т', 'Ь', 'Б', 'Ю', 'Ҥ'].map(createKey)}
-        <Key width={70} height={keyHeight} value="ENTER" onClick={onClick}>
-          {ENTER_TEXT}
+      </div>
+      <div className="flex justify-center">
+        {['Ч', 'С', 'М', 'И', 'Т', 'Ь', 'Б', 'Ҥ'].map(createKey)}
+        <Key width={84} value="ENTER" onClick={onClick}>
+          <SearchIcon className="h-6 w-6" />
         </Key>
       </div>
     </div>

@@ -29,7 +29,7 @@
     "start": "react-scripts start",
     "test": "react-scripts test",
     "prepare": "husky install",
-    "pack": "rm -rf docs && npm run build && mv build docs"
+    "pack": "npm run fix && npm run test && npm run build && rm -rf docs && mv build docs"
   },
   "eslintConfig": {
     "extends": [
