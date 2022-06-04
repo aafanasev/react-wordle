@@ -28,7 +28,8 @@
     "lint": "prettier --check src",
     "start": "react-scripts start",
     "test": "react-scripts test",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "pack": "rm -rf docs && npm run build && mv build docs"
   },
   "eslintConfig": {
     "extends": [
