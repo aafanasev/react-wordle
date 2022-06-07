@@ -174,7 +174,7 @@ function App() {
   }
 
   return (
-    <div className="flex flex-col h-screen pt-2 pb-2 max-w-7xl mx-auto sm:px-6 lg:px-8 md:flex-none">
+    <div className="flex flex-col min-h-full pt-2 pb-2 max-w-7xl mx-auto sm:px-6 lg:px-8 md:flex-none">
       <div className="flex flex-row w-80 mx-auto items-center md:mb-8 mt-4">
         <h1
           className="text-xl ml-2.5 grow font-bold dark:text-white"

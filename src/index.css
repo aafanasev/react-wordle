@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body,
+#root {
+  height: 100%;
+}
+
 .cell-fill-animation {
   animation: onTypeCell linear;
   animation-duration: 0.35s;
