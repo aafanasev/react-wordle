@@ -2,21 +2,16 @@ import Countdown from 'react-countdown'
 import { StatBar } from '../stats/StatBar'
 import { Histogram } from '../stats/Histogram'
 import { GameStats } from '../../lib/localStorage'
-import { tweetStatus, vkStatus, shareStatus, copyStatus } from '../../lib/share'
+import { TWITTER_URL } from '../../constants/settings'
+import { tweetStatus, shareStatus, copyStatus } from '../../lib/share'
 import { tomorrow } from '../../lib/words'
 import { BaseModal } from './BaseModal'
-import {
-  GlobeIcon,
-  GlobeAltIcon,
-  ShareIcon,
-  DuplicateIcon,
-} from '@heroicons/react/outline'
+import { GlobeIcon, ShareIcon, DuplicateIcon } from '@heroicons/react/outline'
 import {
   STATISTICS_TITLE,
   GUESS_DISTRIBUTION_TEXT,
   NEW_WORD_TEXT,
   TWITTER_TEXT,
-  VK_TEXT,
   SHARE_TEXT,
   COPY_TEXT,
 } from '../../constants/strings'
@@ -73,7 +68,17 @@ export const StatsModal = ({
             />
           </div>
           <div className="flex flex-col sm:w-1/2">
-            <h5>Дьоҥҥо кэпсээ #буордулу</h5>
+            <p>
+              Дьоҥҥо кэпсээ{' '}
+              <a
+                href={TWITTER_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="text-blue-500 dark:text-blue-300 font-bold"
+              >
+                #буордулу
+              </a>
+            </p>
             <button
               type="button"
               className="mt-2 w-full rounded-md border border-transparent shadow-sm px-4 py-2 inline-flex items-center text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 sm:text-sm bg-sky-600 hover:bg-sky-700 focus:ring-sky-500"
@@ -83,16 +88,6 @@ export const StatsModal = ({
             >
               <GlobeIcon className="h-5 w-5 mr-2" />
               {TWITTER_TEXT}
-            </button>
-            <button
-              type="button"
-              className="mt-2 w-full rounded-md border border-transparent shadow-sm px-4 py-2 inline-flex items-center text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 sm:text-sm bg-blue-600 hover:bg-blue-700 focus:ring-blue-500"
-              onClick={() => {
-                vkStatus(guesses, isGameLost)
-              }}
-            >
-              <GlobeAltIcon className="h-5 w-5 mr-2" />
-              {VK_TEXT}
             </button>
             <button
               type="button"

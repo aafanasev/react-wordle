@@ -1,8 +1,6 @@
 import {
   InformationCircleIcon,
   ChartBarIcon,
-  SunIcon,
-  MoonIcon,
   CogIcon,
 } from '@heroicons/react/outline'
 import { useState, useEffect } from 'react'
