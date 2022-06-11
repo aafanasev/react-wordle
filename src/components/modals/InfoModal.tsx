@@ -1,5 +1,6 @@
 import { Cell } from '../grid/Cell'
 import { BaseModal } from './BaseModal'
+import { TWITTER_URL } from '../../constants/settings'
 
 type Props = {
   isOpen: boolean
@@ -49,6 +50,18 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
       </div>
       <p className="text-sm text-gray-500 dark:text-gray-300">
         "Ч" буукуба тылга ханна да суох.
+      </p>
+
+      <p className="mt-4 text-sm text-gray-500 dark:text-gray-300">
+        Атын дьон хайдах оонньообуттарын Твиттерга көр{' '}
+        <a
+          href={TWITTER_URL}
+          target="_blank"
+          rel="noreferrer"
+          className="text-blue-500 dark:text-blue-300 font-bold"
+        >
+          #буордулу
+        </a>
       </p>
     </BaseModal>
   )
