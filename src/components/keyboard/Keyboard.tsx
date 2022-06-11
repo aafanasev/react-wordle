@@ -10,6 +10,7 @@ type Props = {
   onEnter: () => void
   guesses: string[]
   isRevealing?: boolean
+  keyboardLayout: string
 }
 
 export const Keyboard = ({
@@ -18,6 +19,7 @@ export const Keyboard = ({
   onEnter,
   guesses,
   isRevealing,
+  keyboardLayout,
 }: Props) => {
   const charStatuses = getStatuses(guesses)
 
@@ -74,23 +76,49 @@ export const Keyboard = ({
     }
   }, [onEnter, onDelete, onChar])
 
-  return (
-    <div data-testid="keyboard">
-      <div className="flex justify-center mb-1">
-        {['Й', 'У', 'К', 'Н', 'Г', 'Х', 'Һ', 'Ө', 'Ҕ', 'Ү'].map(createKey)}
-      </div>
-      <div className="flex justify-center mb-1">
-        {['Ы', 'А', 'П', 'Р', 'О', 'Л', 'Д', 'Э'].map(createKey)}
-        <Key width={84} value="DELETE" onClick={onClick}>
-          <BackspaceIcon className="h-6 w-6" />
-        </Key>
-      </div>
-      <div className="flex justify-center">
-        {['Ч', 'С', 'М', 'И', 'Т', 'Ь', 'Б', 'Ҥ'].map(createKey)}
-        <Key width={84} value="ENTER" onClick={onClick}>
-          <SearchIcon className="h-6 w-6" />
-        </Key>
-      </div>
-    </div>
+  const backspace = (
+    <Key width={84} value="DELETE" onClick={onClick}>
+      <BackspaceIcon className="h-6 w-6" />
+    </Key>
   )
+  const enter = (
+    <Key width={84} value="ENTER" onClick={onClick}>
+      <SearchIcon className="h-6 w-6" />
+    </Key>
+  )
+  const rows = [
+    <div className="flex justify-center mb-1" key="row-1">
+      {['Й', 'У', 'К', 'Н', 'Г', 'Х', 'Һ', 'Ө', 'Ҕ', 'Ү'].map(createKey)}
+    </div>,
+  ]
+
+  if (keyboardLayout === 'low_backspace') {
+    rows.push(
+      <div className="flex justify-center mb-1" key="row-2">
+        {['Ы', 'А', 'П', 'Р', 'О', 'Л', 'Д', 'Э', 'Б', 'Ҥ'].map(createKey)}
+      </div>
+    )
+    rows.push(
+      <div className="flex justify-center" key="row-3">
+        {backspace}
+        {['Ч', 'С', 'М', 'И', 'Т', 'Ь'].map(createKey)}
+        {enter}
+      </div>
+    )
+  } else {
+    rows.push(
+      <div className="flex justify-center mb-1" key="row-2">
+        {['Ы', 'А', 'П', 'Р', 'О', 'Л', 'Д', 'Э'].map(createKey)}
+        {backspace}
+      </div>
+    )
+    rows.push(
+      <div className="flex justify-center" key="row-3">
+        {['Ч', 'С', 'М', 'И', 'Т', 'Ь', 'Б', 'Ҥ'].map(createKey)}
+        {enter}
+      </div>
+    )
+  }
+
+  return <div data-testid="keyboard">{rows.map((row, _) => row)}</div>
 }

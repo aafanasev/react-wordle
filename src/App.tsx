@@ -3,6 +3,7 @@ import {
   ChartBarIcon,
   SunIcon,
   MoonIcon,
+  CogIcon,
 } from '@heroicons/react/outline'
 import { useState, useEffect } from 'react'
 import { Alert } from './components/alerts/Alert'
@@ -10,6 +11,7 @@ import { Grid } from './components/grid/Grid'
 import { Keyboard } from './components/keyboard/Keyboard'
 import { InfoModal } from './components/modals/InfoModal'
 import { StatsModal } from './components/modals/StatsModal'
+import { SettingsModal } from './components/modals/SettingsModal'
 import {
   GAME_TITLE,
   GAME_DESC,
@@ -45,6 +47,7 @@ function App() {
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false)
   const [isNotEnoughLetters, setIsNotEnoughLetters] = useState(false)
   const [isStatsModalOpen, setIsStatsModalOpen] = useState(false)
+  const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false)
   const [isWordNotFoundAlertOpen, setIsWordNotFoundAlertOpen] = useState(false)
   const [isGameLost, setIsGameLost] = useState(false)
   const [isDarkMode, setIsDarkMode] = useState(
@@ -53,6 +56,9 @@ function App() {
       : prefersDarkMode
       ? true
       : false
+  )
+  const [keyboardLayout, setKeyboardLayout] = useState(
+    localStorage.getItem('keyboard') ?? 'default'
   )
   const [successAlert, setSuccessAlert] = useState('')
   const [isRevealing, setIsRevealing] = useState(false)
@@ -84,6 +90,11 @@ function App() {
   const handleDarkMode = (isDark: boolean) => {
     setIsDarkMode(isDark)
     localStorage.setItem('theme', isDark ? 'dark' : 'light')
+  }
+
+  const handleKeyboardLayout = (keyboardLayout: string) => {
+    setKeyboardLayout(keyboardLayout)
+    localStorage.setItem('keyboard', keyboardLayout)
   }
 
   useEffect(() => {
@@ -182,23 +193,6 @@ function App() {
         >
           {GAME_TITLE}
         </h1>
-        {isDarkMode ? (
-          <SunIcon
-            className="h-6 w-6 mr-2 cursor-pointer dark:stroke-white"
-            onClick={() => {
-              log('turn_light_mode_on')
-              handleDarkMode(!isDarkMode)
-            }}
-          />
-        ) : (
-          <MoonIcon
-            className="h-6 w-6 mr-2 cursor-pointer"
-            onClick={() => {
-              log('turn_dark_mode_on')
-              handleDarkMode(!isDarkMode)
-            }}
-          />
-        )}
         <InformationCircleIcon
           className="h-6 w-6 mr-2 cursor-pointer dark:stroke-white"
           onClick={() => {
@@ -207,10 +201,17 @@ function App() {
           }}
         />
         <ChartBarIcon
-          className="h-6 w-6 mr-3 cursor-pointer dark:stroke-white"
+          className="h-6 w-6 mr-2 cursor-pointer dark:stroke-white"
           onClick={() => {
             log('open_stats_modal')
             setIsStatsModalOpen(true)
+          }}
+        />
+        <CogIcon
+          className="h-6 w-6 mr-3 cursor-pointer dark:stroke-white"
+          onClick={() => {
+            log('open_settings_modal')
+            setIsSettingsModalOpen(true)
           }}
         />
       </div>
@@ -225,10 +226,19 @@ function App() {
         onEnter={onEnter}
         guesses={guesses}
         isRevealing={isRevealing}
+        keyboardLayout={keyboardLayout}
       />
       <InfoModal
         isOpen={isInfoModalOpen}
         handleClose={() => setIsInfoModalOpen(false)}
+      />
+      <SettingsModal
+        isOpen={isSettingsModalOpen}
+        isDark={isDarkMode}
+        keyboardLayout={keyboardLayout}
+        handleDarkMode={handleDarkMode}
+        handleKeyboardLayout={handleKeyboardLayout}
+        handleClose={() => setIsSettingsModalOpen(false)}
       />
       <StatsModal
         isOpen={isStatsModalOpen}
