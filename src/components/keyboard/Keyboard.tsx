@@ -86,20 +86,23 @@ export const Keyboard = ({
       <SearchIcon className="h-6 w-6" />
     </Key>
   )
+
+  const lastRowCls = 'flex justify-center mx-1 md:mx-0'
+  const rowCls = lastRowCls + ' mb-1'
   const rows = [
-    <div className="flex justify-center mb-1" key="row-1">
+    <div className={rowCls} key="row-1">
       {['Й', 'У', 'К', 'Н', 'Г', 'Х', 'Һ', 'Ө', 'Ҕ', 'Ү'].map(createKey)}
     </div>,
   ]
 
   if (keyboardLayout === 'low_backspace') {
     rows.push(
-      <div className="flex justify-center mb-1" key="row-2">
+      <div className={rowCls} key="row-2">
         {['Ы', 'А', 'П', 'Р', 'О', 'Л', 'Д', 'Э', 'Б', 'Ҥ'].map(createKey)}
       </div>
     )
     rows.push(
-      <div className="flex justify-center" key="row-3">
+      <div className={lastRowCls} key="row-3">
         {backspace}
         {['Ч', 'С', 'М', 'И', 'Т', 'Ь'].map(createKey)}
         {enter}
@@ -107,13 +110,13 @@ export const Keyboard = ({
     )
   } else {
     rows.push(
-      <div className="flex justify-center mb-1" key="row-2">
+      <div className={rowCls} key="row-2">
         {['Ы', 'А', 'П', 'Р', 'О', 'Л', 'Д', 'Э'].map(createKey)}
         {backspace}
       </div>
     )
     rows.push(
-      <div className="flex justify-center" key="row-3">
+      <div className={lastRowCls} key="row-3">
         {['Ч', 'С', 'М', 'И', 'Т', 'Ь', 'Б', 'Ҥ'].map(createKey)}
         {enter}
       </div>
