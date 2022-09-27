@@ -1,6 +1,8 @@
 import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XCircleIcon } from '@heroicons/react/outline'
+import { TWITTER_URL } from '../../constants/settings'
+import { UserGroupIcon, MailIcon } from '@heroicons/react/outline'
 
 type Props = {
   title: string
@@ -62,6 +64,32 @@ export const BaseModal = ({ title, children, isOpen, handleClose }: Props) => {
                     {title}
                   </Dialog.Title>
                   <div className="mt-2">{children}</div>
+                  <div className="text-left mt-4 text-xs text-gray-500 dark:text-gray-300">
+                    <p>
+                      <UserGroupIcon className="inline-flex h-4 w-4" /> Атын
+                      дьон Твиттерга кыайыылара{' '}
+                      <a
+                        href={TWITTER_URL}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-blue-500 dark:text-blue-300"
+                      >
+                        #буордулу
+                      </a>
+                    </p>
+                    <p className="mt-2">
+                      <MailIcon className="inline-flex h-4 w-4" /> Оонньуу
+                      оҥорооччулардыын{' '}
+                      <a
+                        href="https://forms.gle/x1vkMxnebdFLEgwJA"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-blue-500 dark:text-blue-300"
+                      >
+                        санааҕытын үллэстиҥ
+                      </a>
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
