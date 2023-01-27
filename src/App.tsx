@@ -20,7 +20,6 @@ import {
   CORRECT_WORD_MESSAGE,
 } from './constants/strings'
 import {
-  MAX_WORD_LENGTH,
   MAX_CHALLENGES,
   ALERT_TIME_MS,
   REVEAL_TIME_MS,
@@ -54,6 +53,9 @@ function App() {
       : prefersDarkMode
       ? true
       : false
+  )
+  const [lettersCount, setLettersCount] = useState(
+    parseInt(localStorage.getItem('letters_count') ?? '6')
   )
   const [keyboardLayout, setKeyboardLayout] = useState(
     localStorage.getItem('keyboard') ?? 'default'
@@ -90,6 +92,11 @@ function App() {
     localStorage.setItem('theme', isDark ? 'dark' : 'light')
   }
 
+  const handleLettersCount = (lettersCount: number) => {
+    setLettersCount(lettersCount)
+    localStorage.setItem('letters_count', lettersCount.toString())
+  }
+
   const handleKeyboardLayout = (keyboardLayout: string) => {
     setKeyboardLayout(keyboardLayout)
     localStorage.setItem('keyboard', keyboardLayout)
@@ -110,7 +117,7 @@ function App() {
           setSuccessAlert('')
           setIsStatsModalOpen(true)
         }, ALERT_TIME_MS)
-      }, REVEAL_TIME_MS * MAX_WORD_LENGTH)
+      }, REVEAL_TIME_MS * lettersCount)
     }
     if (isGameLost) {
       setTimeout(() => {
@@ -121,7 +128,7 @@ function App() {
 
   const onChar = (value: string) => {
     if (
-      currentGuess.length < MAX_WORD_LENGTH &&
+      currentGuess.length < lettersCount &&
       guesses.length < MAX_CHALLENGES &&
       !isGameWon
     ) {
@@ -137,7 +144,7 @@ function App() {
     if (isGameWon || isGameLost) {
       return
     }
-    if (!(currentGuess.length === MAX_WORD_LENGTH)) {
+    if (!(currentGuess.length === lettersCount)) {
       setIsNotEnoughLetters(true)
       return setTimeout(() => {
         setIsNotEnoughLetters(false)
@@ -156,12 +163,12 @@ function App() {
     // chars have been revealed
     setTimeout(() => {
       setIsRevealing(false)
-    }, REVEAL_TIME_MS * MAX_WORD_LENGTH)
+    }, REVEAL_TIME_MS * lettersCount)
 
     const winningWord = isWinningWord(currentGuess)
 
     if (
-      currentGuess.length === MAX_WORD_LENGTH &&
+      currentGuess.length === lettersCount &&
       guesses.length < MAX_CHALLENGES &&
       !isGameWon
     ) {
@@ -217,6 +224,7 @@ function App() {
         guesses={guesses}
         currentGuess={currentGuess}
         isRevealing={isRevealing}
+        lettersCount={lettersCount}
       />
       <Keyboard
         onChar={onChar}
@@ -225,6 +233,7 @@ function App() {
         guesses={guesses}
         isRevealing={isRevealing}
         keyboardLayout={keyboardLayout}
+        lettersCount={lettersCount}
       />
       <InfoModal
         isOpen={isInfoModalOpen}
@@ -233,8 +242,10 @@ function App() {
       <SettingsModal
         isOpen={isSettingsModalOpen}
         isDark={isDarkMode}
+        lettersCount={lettersCount}
         keyboardLayout={keyboardLayout}
         handleDarkMode={handleDarkMode}
+        handleLettersCount={handleLettersCount}
         handleKeyboardLayout={handleKeyboardLayout}
         handleClose={() => setIsSettingsModalOpen(false)}
       />

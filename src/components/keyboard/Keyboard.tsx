@@ -11,6 +11,7 @@ type Props = {
   guesses: string[]
   isRevealing?: boolean
   keyboardLayout: string
+  lettersCount: number
 }
 
 export const Keyboard = ({
@@ -20,6 +21,7 @@ export const Keyboard = ({
   guesses,
   isRevealing,
   keyboardLayout,
+  lettersCount,
 }: Props) => {
   const charStatuses = getStatuses(guesses)
 
@@ -42,6 +44,7 @@ export const Keyboard = ({
       onClick={onClick}
       status={charStatuses[key]}
       isRevealing={isRevealing}
+      lettersCount={lettersCount}
     />
   )
 
@@ -77,12 +80,17 @@ export const Keyboard = ({
   }, [onEnter, onDelete, onChar])
 
   const backspace = (
-    <Key width={84} value="DELETE" onClick={onClick}>
+    <Key
+      width={84}
+      value="DELETE"
+      onClick={onClick}
+      lettersCount={lettersCount}
+    >
       <BackspaceIcon className="h-6 w-6" />
     </Key>
   )
   const enter = (
-    <Key width={84} value="ENTER" onClick={onClick}>
+    <Key width={84} value="ENTER" onClick={onClick} lettersCount={lettersCount}>
       <SearchIcon className="h-6 w-6" />
     </Key>
   )

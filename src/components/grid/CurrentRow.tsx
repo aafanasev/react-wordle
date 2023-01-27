@@ -1,13 +1,13 @@
-import { MAX_WORD_LENGTH } from '../../constants/settings'
 import { Cell } from './Cell'
 
 type Props = {
+  lettersCount: number
   guess: string
 }
 
-export const CurrentRow = ({ guess }: Props) => {
+export const CurrentRow = ({ lettersCount, guess }: Props) => {
   const splitGuess = guess.split('')
-  const emptyCells = Array.from(Array(MAX_WORD_LENGTH - splitGuess.length))
+  const emptyCells = Array.from(Array(lettersCount - splitGuess.length))
 
   return (
     <div className="flex justify-center mb-1">
