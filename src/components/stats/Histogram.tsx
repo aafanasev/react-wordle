@@ -7,7 +7,7 @@ type Props = {
 
 export const Histogram = ({ gameStats }: Props) => {
   const winDistribution = gameStats.winDistribution
-  const maxValue = Math.max(...winDistribution)
+  const maxValue = Math.max(...winDistribution) || 1
 
   return (
     <div className="columns-1 justify-left m-2 text-sm dark:text-white">
