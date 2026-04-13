@@ -81,7 +81,7 @@ export const BaseModal = ({ title, children, isOpen, handleClose }: Props) => {
                       <MailIcon className="inline-flex h-4 w-4" /> Оонньуу
                       оҥорооччулардыын{' '}
                       <a
-                        href="https://forms.gle/x1vkMxnebdFLEgwJA"
+                        href="https://forms.gle/bhv7rpYjsgTdcR7s5"
                         target="_blank"
                         rel="noreferrer"
                         className="text-blue-500 dark:text-blue-300"
