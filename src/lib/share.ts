@@ -28,14 +28,12 @@ export const vkStatus = (guesses: string[], lost: boolean) => {
 
 export const shareStatus = (guesses: string[], lost: boolean) => {
   log('share')
-  navigator.share({
-    text: getText(guesses, lost),
-  })
+  navigator.share({ text: getText(guesses, lost) }).catch(() => {})
 }
 
 export const copyStatus = (guesses: string[], lost: boolean) => {
   log('copy')
-  navigator.clipboard.writeText(getText(guesses, lost))
+  navigator.clipboard.writeText(getText(guesses, lost)).catch(() => {})
 }
 
 const getStats = (guesses: string[], lost: boolean) => {
