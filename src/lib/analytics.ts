@@ -17,9 +17,7 @@ const firebaseAnalytics = isSupported().then((yes) =>
 
 export const log = (
   eventName: string,
-  eventParams?: {
-    [key: string]: any
-  }
+  eventParams?: Record<string, unknown>
 ) => {
   firebaseAnalytics.then((analytics) => {
     if (analytics != null) {
