@@ -191,27 +191,36 @@ function App() {
         >
           {GAME_TITLE}
         </h1>
-        <InformationCircleIcon
-          className="h-6 w-6 mr-2 cursor-pointer dark:stroke-white"
+        <button
+          aria-label="How to play"
+          className="p-0 border-0 bg-transparent"
           onClick={() => {
             log('open_info_modal')
             setIsInfoModalOpen(true)
           }}
-        />
-        <ChartBarIcon
-          className="h-6 w-6 mr-2 cursor-pointer dark:stroke-white"
+        >
+          <InformationCircleIcon className="h-6 w-6 mr-2 cursor-pointer dark:stroke-white" />
+        </button>
+        <button
+          aria-label="Statistics"
+          className="p-0 border-0 bg-transparent"
           onClick={() => {
             log('open_stats_modal')
             setIsStatsModalOpen(true)
           }}
-        />
-        <CogIcon
-          className="h-6 w-6 mr-3 cursor-pointer dark:stroke-white"
+        >
+          <ChartBarIcon className="h-6 w-6 mr-2 cursor-pointer dark:stroke-white" />
+        </button>
+        <button
+          aria-label="Settings"
+          className="p-0 border-0 bg-transparent"
           onClick={() => {
             log('open_settings_modal')
             setIsSettingsModalOpen(true)
           }}
-        />
+        >
+          <CogIcon className="h-6 w-6 mr-3 cursor-pointer dark:stroke-white" />
+        </button>
       </div>
       <Grid
         guesses={guesses}
