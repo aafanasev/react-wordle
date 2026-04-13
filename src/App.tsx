@@ -48,12 +48,9 @@ function App() {
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false)
   const [isWordNotFoundAlertOpen, setIsWordNotFoundAlertOpen] = useState(false)
   const [isGameLost, setIsGameLost] = useState(false)
+  const savedTheme = localStorage.getItem('theme')
   const [isDarkMode, setIsDarkMode] = useState(
-    localStorage.getItem('theme')
-      ? localStorage.getItem('theme') === 'dark'
-      : prefersDarkMode
-      ? true
-      : false
+    savedTheme ? savedTheme === 'dark' : prefersDarkMode
   )
   const [keyboardLayout, setKeyboardLayout] = useState(
     localStorage.getItem('keyboard') ?? 'default'
