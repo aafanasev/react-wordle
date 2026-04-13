@@ -160,11 +160,7 @@ function App() {
 
     const winningWord = isWinningWord(currentGuess)
 
-    if (
-      currentGuess.length === MAX_WORD_LENGTH &&
-      guesses.length < MAX_CHALLENGES &&
-      !isGameWon
-    ) {
+    if (guesses.length < MAX_CHALLENGES && !isGameWon) {
       setGuesses([...guesses, currentGuess])
       setCurrentGuess('')
 
