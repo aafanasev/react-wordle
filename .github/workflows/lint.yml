@@ -10,7 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Prettify code
-        uses: creyD/prettier_action@v4.2
+      - uses: actions/setup-node@v3
         with:
-          prettier_options: --check src
+          node-version: 16
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
