@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  /* Standalone PWA on iOS renders edge-to-edge: keep the header clear of the
+     status bar and the keyboard clear of the home indicator and rounded
+     corners. Insets are 0px wherever there is nothing to avoid. */
+  .safe-area-inset {
+    padding-top: calc(0.5rem + env(safe-area-inset-top, 0px));
+    padding-bottom: calc(0.5rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+
 html,
 body,
 #root {
