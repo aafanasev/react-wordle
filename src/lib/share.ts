@@ -3,10 +3,11 @@ import { getGuessStatuses } from './statuses'
 import { solutionIndex } from './words'
 import { GAME_TITLE } from '../constants/strings'
 
-export const tweetStatus = (guesses: string[], lost: boolean) => {
+export const postStatusToX = (guesses: string[], lost: boolean) => {
+  // Event name kept as 'tweet' so existing Firebase reports stay one continuous series.
   log('tweet')
   window.open(
-    'https://twitter.com/intent/tweet?text=' +
+    'https://x.com/intent/post?text=' +
       encodeURIComponent(getText(guesses, lost)),
     '_blank'
   )

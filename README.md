@@ -2,7 +2,7 @@
 
 https://wordle.afanasev.net - игра Wordle (вордл, буордулу) на якутском языке.
 
-Ищите по хэштегу [#буордулу](https://twitter.com/search?q=%23%D0%B1%D1%83%D0%BE%D1%80%D0%B4%D1%83%D0%BB%D1%83) в Твиттере
+Ищите по хэштегу [#буордулу](https://x.com/search?q=%23%D0%B1%D1%83%D0%BE%D1%80%D0%B4%D1%83%D0%BB%D1%83) в X
 
 ### Ссылки
 
