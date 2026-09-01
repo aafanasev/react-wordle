@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XCircleIcon } from '@heroicons/react/outline'
-import { TWITTER_URL } from '../../constants/settings'
+import { X_URL } from '../../constants/settings'
 import { UserGroupIcon, MailIcon } from '@heroicons/react/outline'
 
 type Props = {
@@ -67,9 +67,9 @@ export const BaseModal = ({ title, children, isOpen, handleClose }: Props) => {
                   <div className="text-left mt-4 text-xs text-gray-500 dark:text-gray-300">
                     <p>
                       <UserGroupIcon className="inline-flex h-4 w-4" /> Атын
-                      дьон Твиттерга кыайыылара{' '}
+                      дьон X-ка кыайыылара{' '}
                       <a
-                        href={TWITTER_URL}
+                        href={X_URL}
                         target="_blank"
                         rel="noreferrer"
                         className="text-blue-500 dark:text-blue-300"
