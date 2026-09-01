@@ -3,7 +3,7 @@ import { StatBar } from '../stats/StatBar'
 import { Histogram } from '../stats/Histogram'
 import { GameStats } from '../../lib/localStorage'
 import { X_URL } from '../../constants/settings'
-import { postStatusToX, shareStatus, copyStatus } from '../../lib/share'
+import { getXPostUrl, logXPost, shareStatus, copyStatus } from '../../lib/share'
 import { tomorrow } from '../../lib/words'
 import { BaseModal } from './BaseModal'
 import { GlobeIcon, ShareIcon, DuplicateIcon } from '@heroicons/react/outline'
@@ -79,16 +79,16 @@ export const StatsModal = ({
                 #буордулу
               </a>
             </p>
-            <button
-              type="button"
+            <a
+              href={getXPostUrl(guesses, isGameLost)}
+              target="_blank"
+              rel="noreferrer"
               className="mt-2 w-full rounded-md border border-transparent shadow-sm px-4 py-2 inline-flex items-center text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 sm:text-sm bg-sky-600 hover:bg-sky-700 focus:ring-sky-500"
-              onClick={() => {
-                postStatusToX(guesses, isGameLost)
-              }}
+              onClick={logXPost}
             >
               <GlobeIcon className="h-5 w-5 mr-2" />
               {X_TEXT}
-            </button>
+            </a>
             <button
               type="button"
               className="mt-2 w-full rounded-md border border-transparent shadow-sm px-4 py-2 inline-flex items-center text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 sm:text-sm bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500"
