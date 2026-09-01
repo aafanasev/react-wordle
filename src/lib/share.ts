@@ -3,19 +3,14 @@ import { getGuessStatuses } from './statuses'
 import { solutionIndex } from './words'
 import { GAME_TITLE } from '../constants/strings'
 
-// Built as a plain URL rather than opened with window.open so the share control can be a
-// real link: iOS only hands x.com over to the X app for genuine <a> taps, and falls back to
-// an in-app browser for script-initiated navigation.
-export const getXPostUrl = (guesses: string[], lost: boolean) => {
-  return (
-    'https://x.com/intent/post?text=' +
-    encodeURIComponent(getText(guesses, lost))
-  )
-}
-
-export const logXPost = () => {
+export const postStatusToX = (guesses: string[], lost: boolean) => {
   // Event name kept as 'tweet' so existing Firebase reports stay one continuous series.
   log('tweet')
+  window.open(
+    'https://x.com/intent/post?text=' +
+      encodeURIComponent(getText(guesses, lost)),
+    '_blank'
+  )
 }
 
 export const vkStatus = (guesses: string[], lost: boolean) => {
